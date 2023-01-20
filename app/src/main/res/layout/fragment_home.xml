@@ -62,11 +62,11 @@
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="129dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:text="2023.01.20"
+        android:layout_marginTop="32dp"
+        android:text="2023-01-20"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/characterPos" />
@@ -96,10 +96,9 @@
 
     <Button
         android:id="@+id/selectDate"
-        android:layout_width="41dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="#FFFFFF"
         android:foreground="@drawable/ic_baseline_calendar_month_24"
         app:layout_constraintStart_toEndOf="@+id/date"
