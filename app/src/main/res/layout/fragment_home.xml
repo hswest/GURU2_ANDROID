@@ -94,13 +94,14 @@
         app:layout_constraintTop_toBottomOf="@+id/diaryName"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-    <ImageButton
+    <Button
         android:id="@+id/selectDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="41dp"
+        android:layout_height="39dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:src="@drawable/ic_baseline_calendar_month_24"
+        android:backgroundTint="#FFFFFF"
+        android:foreground="@drawable/ic_baseline_calendar_month_24"
         app:layout_constraintStart_toEndOf="@+id/date"
         app:layout_constraintTop_toBottomOf="@+id/characterPos" />
 
