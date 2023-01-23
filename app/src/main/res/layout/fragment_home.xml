@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF"
     tools:context=".ui.home.HomeFragment">
 
     <ImageView
@@ -15,18 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sisdeBar"
         tools:srcCompat="@android:drawable/star_off" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="248dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:text="메인페이지 레이아웃"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox1"
-        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/toDoList"
@@ -43,22 +33,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="오늘의 감정"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/toDoView" />
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="248dp"
-        android:layout_height="19dp"
+    <EditText
+        android:id="@+id/diaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="캐릭터 후보 그리기"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         android:textSize="11sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoList"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/diaryName"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/date"
@@ -81,19 +72,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <EditText
-        android:id="@+id/diaryText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diaryName"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
     <Button
         android:id="@+id/selectDate"
         android:layout_width="43dp"
@@ -103,6 +81,42 @@
         android:foreground="@drawable/ic_baseline_calendar_month_24"
         app:layout_constraintStart_toEndOf="@+id/date"
         app:layout_constraintTop_toBottomOf="@+id/characterPos" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="55dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="28dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:drawableTint="#000000"
+        app:icon="@drawable/ic_baseline_add_circle_outline_24"
+        app:iconTint="#000000"
+        app:layout_constraintStart_toEndOf="@+id/toDoEdit"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <EditText
+        android:id="@+id/toDoEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/toDoList"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <ListView
+        android:id="@+id/toDoView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toDoEdit">
+
+    </ListView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

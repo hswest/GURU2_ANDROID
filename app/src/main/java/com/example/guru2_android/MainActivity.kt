@@ -1,6 +1,7 @@
 package com.example.guru2_android
 
 import android.app.DatePickerDialog
+import android.graphics.Paint
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
@@ -23,6 +24,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +38,11 @@ class MainActivity : AppCompatActivity() {
     private var selectDateBtn: Button? = null
     private var dateTextView: TextView? = null
     private var cal = Calendar.getInstance()
+
+    //투두리스트
+    private lateinit var toDoListView : ArrayList<String>
+    private lateinit var adapter : ArrayAdapter<String>
+    private lateinit var toDoEdit : EditText
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +103,27 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        //투두리스트
+        toDoListView = ArrayList()
+
+        adapter = ArrayAdapter(this, R.layout.todo_item, toDoListView)
+
+        val listView: ListView = findViewById(R.id.toDoView)
+        val addBtn: Button = findViewById(R.id.addButton)
+        toDoEdit = findViewById(R.id.toDoEdit)
+
+        listView.adapter = adapter
+
+        addBtn.setOnClickListener {
+            addItem()
+        }
+
+        listView.setOnItemClickListener { adapterView, view, i, l ->
+            val textView: TextView = view as TextView
+
+            textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -114,4 +142,17 @@ class MainActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         dateTextView!!.text = sdf.format(cal.getTime())
     }
+
+    private fun addItem() {
+        val toDo : String = toDoEdit.text.toString()
+
+        if(toDo.isNotEmpty()) {
+            toDoListView.add(toDo)
+
+            adapter.notifyDataSetChanged()
+        } else {
+            Toast.makeText(this, "할 일을 적어주세요", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
