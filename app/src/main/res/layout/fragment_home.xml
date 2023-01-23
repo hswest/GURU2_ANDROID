@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
+    android:background="@color/beige1"
     android:backgroundTint="#00FFFFFF"
     tools:context=".ui.home.HomeFragment">
 
@@ -12,19 +12,22 @@
         android:id="@+id/characterPos"
         android:layout_width="51dp"
         android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sisdeBar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@android:drawable/star_off" />
 
     <TextView
         android:id="@+id/toDoList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="32dp"
         android:text="To do List"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -32,80 +35,82 @@
         android:id="@+id/diaryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="16dp"
-        android:text="오늘의 감정"
+        android:text="오늘의 일기장"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toDoView" />
 
     <EditText
         android:id="@+id/diaryText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="363dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/memo_border"
         android:ems="10"
+        android:hint="오늘을 기록해보세요"
         android:inputType="textPersonName"
-        android:textSize="11sp"
+        android:textColorLink="@color/beige4"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diaryName"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="129dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="171dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:text="2023-01-20"
-        android:textSize="24sp"
+        android:textColor="@color/brown1"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/selectDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/characterPos" />
 
-    <ImageView
-        android:id="@+id/sisdeBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
     <Button
         android:id="@+id/selectDate"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="43dp"
         android:layout_height="43dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="#FFFFFF"
+        android:layout_marginTop="77dp"
+        android:backgroundTint="#00FFFFFF"
         android:foreground="@drawable/ic_baseline_calendar_month_24"
         app:layout_constraintStart_toEndOf="@+id/date"
-        app:layout_constraintTop_toBottomOf="@+id/characterPos" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="55dp"
         android:layout_height="31dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="72dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:drawableTint="#000000"
         app:icon="@drawable/ic_baseline_add_circle_outline_24"
         app:iconTint="#000000"
         app:layout_constraintStart_toEndOf="@+id/toDoEdit"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        app:layout_constraintTop_toBottomOf="@+id/selectDate" />
 
     <EditText
         android:id="@+id/toDoEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="297dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="오늘의 할일을 적어보세요"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/toDoList"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toDoList" />
 
     <ListView
         android:id="@+id/toDoView"
@@ -113,6 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toDoEdit">
 
