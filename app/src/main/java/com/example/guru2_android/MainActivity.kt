@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    //날짜 선택 변수
     private lateinit var date: TextView
     private lateinit var selectDate: Button
 
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private var dateTextView: TextView? = null
     private var cal = Calendar.getInstance()
 
-    //투두리스트
+    //투두리스트 변수
     private lateinit var toDoListView : ArrayList<String>
     private lateinit var adapter : ArrayAdapter<String>
     private lateinit var toDoEdit : EditText
@@ -70,6 +71,28 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        //날짜 선택
+        selectDate()
+
+        //투두리스트
+        toDoList()
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    //날짜 선택
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun selectDate() {
         date = findViewById(R.id.date)
         selectDate = findViewById(R.id.selectDate)
 
@@ -102,8 +125,16 @@ class MainActivity : AppCompatActivity() {
                     cal.get(Calendar.DAY_OF_MONTH)).show()
             }
         })
+    }
 
-        //투두리스트
+    private fun updateDateInView() {
+        val myFormat = "yyyy/MM/dd" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        dateTextView!!.text = sdf.format(cal.getTime())
+    }
+
+    //투두리스트 구현
+    private fun toDoList() {
         toDoListView = ArrayList()
 
         adapter = ArrayAdapter(this, R.layout.todo_item, toDoListView)
@@ -123,24 +154,6 @@ class MainActivity : AppCompatActivity() {
 
             textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    private fun updateDateInView() {
-        val myFormat = "yyyy.MM.dd" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        dateTextView!!.text = sdf.format(cal.getTime())
     }
 
     private fun addItem() {

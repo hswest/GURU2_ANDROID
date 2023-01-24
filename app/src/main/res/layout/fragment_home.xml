@@ -67,7 +67,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
-        android:text="2023-01-20"
+        android:text="2023/01/20"
         android:textColor="@color/brown1"
         android:textSize="30sp"
         android:textStyle="bold"
