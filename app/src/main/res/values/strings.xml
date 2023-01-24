@@ -9,7 +9,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_mypage">My Page</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_slideshow">Information</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

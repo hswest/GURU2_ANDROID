@@ -43,24 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toDoView" />
 
-    <EditText
-        android:id="@+id/diaryText"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/memo_border"
-        android:ems="10"
-        android:hint="오늘을 기록해보세요"
-        android:inputType="textPersonName"
-        android:textColorLink="@color/beige4"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diaryName"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
     <TextView
         android:id="@+id/date"
         android:layout_width="171dp"
@@ -123,6 +105,26 @@
         app:layout_constraintTop_toBottomOf="@+id/toDoEdit">
 
     </ListView>
+
+    <EditText
+        android:id="@+id/diaryTextMultiLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/memo_border"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="오늘을 기록해보세요"
+        android:inputType="textMultiLine"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/diaryName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
