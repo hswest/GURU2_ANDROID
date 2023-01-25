@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+
     //날짜 선택 변수
     private lateinit var date: TextView
     private lateinit var selectDate: Button
