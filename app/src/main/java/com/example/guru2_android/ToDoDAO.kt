@@ -22,6 +22,6 @@ interface ToDoDAO {
     @Update
     suspend fun update(dto: Todo)
 
-    @Delete
-    fun delete(dto: Todo)
+    @Query("delete from todoTable where id = (:id)")
+    fun delete(id: Long)
 }

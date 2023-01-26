@@ -140,10 +140,6 @@ class MainActivity : AppCompatActivity() {
                     cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.DAY_OF_MONTH)).show()
-                //모르겠음!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                CoroutineScope(Dispatchers.IO).launch {
-                    toDoViewModel.getByDate(date.text.toString())
-                }
             }
         })
 
@@ -172,7 +168,7 @@ class MainActivity : AppCompatActivity() {
             val toDoDate = dateTextView?.text.toString()
 
             if(title.isNotEmpty()) {
-                val todo = Todo(0, title, toDoDate, false)
+                val todo = Todo(0, title, toDoDate, false, false)
 
                 //registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
@@ -213,12 +209,22 @@ class MainActivity : AppCompatActivity() {
         toDoView.layoutManager = LinearLayoutManager(this)
         toDoView.adapter = todoAdapter
 
+        //체크
         todoAdapter.setItemCheckBoxClickListener(object: ToDoAdapter.ItemCheckBoxClickListener {
             override fun onClick(view: View, position: Int, itemId: Long) {
                 CoroutineScope(Dispatchers.IO).launch {
                     val todo = toDoViewModel.getOne(itemId)
                     todo.isChecked = !todo.isChecked
                     toDoViewModel.update(todo)
+                }
+            }
+        })
+
+       //삭제
+        todoAdapter.setItemDeleteClickListener(object: ToDoAdapter.ItemDeleteClickListener {
+            override fun onClick(view: View, position: Int, itemId: Long) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    toDoViewModel.delete(itemId)
                 }
             }
         })

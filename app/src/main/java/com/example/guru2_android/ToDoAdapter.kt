@@ -5,6 +5,7 @@ import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +19,13 @@ class ToDoAdapter(val context: Context): RecyclerView.Adapter<ToDoAdapter.TodoVi
         var title = itemView.findViewById<TextView>(R.id.title)
         var toDoDate = itemView.findViewById<TextView>(R.id.toDoDate)
         var checkbox = itemView.findViewById<CheckBox>(R.id.cbCheck)
+        var deleteButton = itemView.findViewById<CheckBox>(R.id.deleteBtn)
 
         fun onBind(data: Todo) {
             title.text = data.title
             toDoDate.text = data.toDoDate
             checkbox.isChecked = data.isChecked
+            deleteButton.isChecked = data.isClicked
 
             if (data.isChecked) {
                 title.paintFlags = title.paintFlags or STRIKE_THRU_TEXT_FLAG
@@ -32,6 +35,10 @@ class ToDoAdapter(val context: Context): RecyclerView.Adapter<ToDoAdapter.TodoVi
 
             checkbox.setOnClickListener{
                 itemCheckBoxClickListener.onClick(it, layoutPosition, list[layoutPosition].id)
+            }
+
+            deleteButton.setOnClickListener{
+                itemDeleteClickListener.onClick(it, layoutPosition, list[layoutPosition].id)
             }
         }
     }
@@ -54,6 +61,8 @@ class ToDoAdapter(val context: Context): RecyclerView.Adapter<ToDoAdapter.TodoVi
         notifyDataSetChanged()
     }
 
+
+    //체크
     interface ItemCheckBoxClickListener {
         fun onClick(view: View, position: Int, itemId: Long)
     }
@@ -62,5 +71,16 @@ class ToDoAdapter(val context: Context): RecyclerView.Adapter<ToDoAdapter.TodoVi
 
     fun setItemCheckBoxClickListener(itemCheckBoxClickListener: ItemCheckBoxClickListener) {
         this.itemCheckBoxClickListener = itemCheckBoxClickListener
+    }
+
+    //삭제
+    interface ItemDeleteClickListener {
+        fun onClick(view: View, position: Int, itemId: Long)
+    }
+
+    private lateinit var itemDeleteClickListener: ItemDeleteClickListener
+
+    fun setItemDeleteClickListener(itemDeleteClickListener: ItemDeleteClickListener) {
+        this.itemDeleteClickListener = itemDeleteClickListener
     }
 }

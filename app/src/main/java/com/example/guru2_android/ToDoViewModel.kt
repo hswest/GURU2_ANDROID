@@ -26,8 +26,6 @@ class ToDoViewModel: ViewModel() {
         todoRepository.update(dto)
     }
 
-    fun delete(dto: Todo) = viewModelScope.launch(Dispatchers.IO) {
-        todoRepository.delete(dto)
-    }
+    fun delete(id: Long) = todoRepository.delete(id)
 
 }

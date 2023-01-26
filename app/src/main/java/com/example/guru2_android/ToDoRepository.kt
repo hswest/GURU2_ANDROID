@@ -30,7 +30,7 @@ class TodoRepository private constructor(context: Context){
 
     suspend fun update(dto: Todo) = todoDao.update(dto)
 
-    fun delete(dto: Todo) = todoDao.delete(dto)
+    fun delete(id: Long) = todoDao.delete(id)
 
     companion object {
         private var INSTANCE: TodoRepository?=null
