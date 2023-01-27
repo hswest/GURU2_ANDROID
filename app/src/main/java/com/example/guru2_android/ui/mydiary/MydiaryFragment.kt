@@ -1,15 +1,14 @@
-package com.example.guru2_android.ui.mypage
+package com.example.guru2_android.ui.mydiary
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.guru2_android.databinding.FragmentMydiaryBinding
 
-class MypageFragment : Fragment() {
+class MydiaryFragment : Fragment() {
 
     private var _binding: FragmentMydiaryBinding? = null
 
@@ -23,7 +22,7 @@ class MypageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val galleryViewModel =
-            ViewModelProvider(this).get(MypageViewModel::class.java)
+            ViewModelProvider(this).get(MydiaryViewModel::class.java)
 
         _binding = FragmentMydiaryBinding.inflate(inflater, container, false)
         val root: View = binding.root
