@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -21,11 +20,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.guru2_android.databinding.ActivityMainBinding
-import com.example.guru2_android.databinding.FragmentMydiaryBinding
-import com.example.guru2_android.ui.mydiary.Diary
-import com.example.guru2_android.ui.mydiary.DiaryAdapter
-import com.example.guru2_android.ui.mydiary.DiaryHelper
-import com.example.guru2_android.ui.mydiary.MydiaryViewModel
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,14 +49,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var todoAdapter: ToDoAdapter
     lateinit var toDoView: RecyclerView
 
-    private lateinit var diaryBinding : FragmentMydiaryBinding
-    private lateinit var todies : Vector<Diary>
-    private lateinit var diaryAdapter : DiaryAdapter
-
-    companion object {
-        private const val MAIN = R.layout.fragment_mydiary
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
+
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -97,8 +84,6 @@ class MainActivity : AppCompatActivity() {
 
         //투두리스트
         toDoList()
-
-        myDiary()
 
     }
 
@@ -212,33 +197,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }
-
-    private fun myDiary() {
-        diaryBinding = DataBindingUtil.setContentView(this, MAIN)
-        diaryBinding.diaryRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        todies = Vector()
-        val openHelper = DiaryHelper(this)
-        val db = openHelper.writableDatabase
-        val cursor = db.rawQuery("select * from diary", null)
-
-        val count = cursor.count
-        if (count >= 1) {
-            while (cursor.moveToNext()) {
-                val title = cursor.getString(0)
-                val time = cursor.getString(2)
-                todies.add(Diary(title, time))
-            }
-        } else {
-            todies.add(Diary("등록된 메모가 없습니다.", ""))
-        }
-
-        cursor.close()
-        diaryAdapter = DiaryAdapter(todies, this)
-        diaryBinding.diaryRv.adapter = diaryAdapter
-
-        diaryBinding.diaryViewModel = MydiaryViewModel(this, this)
-        diaryBinding.executePendingBindings()
     }
 }
