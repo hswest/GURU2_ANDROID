@@ -19,7 +19,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.guru2_android.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
@@ -66,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_mypage, R.id.nav_information
+                R.id.nav_home, R.id.nav_mydiary, R.id.nav_information
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
