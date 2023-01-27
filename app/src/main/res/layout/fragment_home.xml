@@ -30,24 +30,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
+            android:layout_marginTop="16dp"
             android:text="오늘의 일기장"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="457dp" />
+            app:layout_constraintTop_toBottomOf="@+id/toDoView" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="171dp"
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:text="2023/01/20"
             android:textColor="@color/brown1"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/selectDate"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="79dp" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <Button
             android:id="@+id/selectDate"
@@ -85,25 +87,6 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toDoList" />
-
-        <EditText
-            android:id="@+id/diaryTextMultiLine"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/memo_border"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="오늘을 기록해보세요"
-            android:inputType="textMultiLine"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <RadioGroup
         android:id="@+id/radioGroup"
@@ -210,6 +193,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/upuibear_1" />
+
+        <EditText
+            android:id="@+id/diaryTextMultiLine"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/memo_border"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="오늘을 기록해보세요"
+            android:inputType="textMultiLine"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/toDoView"
