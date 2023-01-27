@@ -1,20 +1,13 @@
 package com.example.guru2_android
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
-import android.graphics.Paint
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.update
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.*
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -27,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.guru2_android.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +27,6 @@ import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -77,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_mypage, R.id.nav_information
+                R.id.nav_home, R.id.nav_mydiary, R.id.nav_information
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
