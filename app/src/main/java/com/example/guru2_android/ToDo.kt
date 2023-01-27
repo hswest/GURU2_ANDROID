@@ -12,5 +12,5 @@ class Todo(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "toDoDate") val toDoDate: String,
     @ColumnInfo(name = "isChecked") var isChecked: Boolean,
-    @ColumnInfo(name = "isClicked") var isClicked: Boolean
+    @ColumnInfo(name = "isClicked") var isClicked: Boolean,
 )
