@@ -1,41 +1,33 @@
 package com.example.guru2_android
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
-import android.graphics.Paint
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.update
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.*
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.guru2_android.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,8 +44,6 @@ class MainActivity : AppCompatActivity() {
     private var cal = Calendar.getInstance()
 
     //투두리스트 변수
-    //private lateinit var toDoView : ArrayList<String>
-    //private lateinit var adapter : ArrayAdapter<String>
     private lateinit var toDoEdit : EditText
 
     lateinit var toDoViewModel: ToDoViewModel
@@ -73,8 +63,7 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_mypage, R.id.nav_information
@@ -84,9 +73,12 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         toDoView = findViewById(R.id.toDoView)
-        //val listView: ListView = findViewById(R.id.toDoView)
-        //val addBtn: Button = findViewById(R.id.addButton)
         toDoEdit = findViewById(R.id.toDoEdit)
+
+        toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
+        toDoViewModel.list(dateTextView?.text.toString()).observe(this@MainActivity) {
+            todoAdapter.update(it as MutableList<Todo>)
+        }
 
         //날짜 선택
         selectDate()
@@ -136,7 +128,6 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(view: View) {
                 DatePickerDialog(this@MainActivity,
                     dateSetListener,
-                    // set DatePickerDialog to point to today's date when it loads up
                     cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.DAY_OF_MONTH)).show()
@@ -146,63 +137,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateDateInView() {
-        val myFormat = "yyyy-MM-dd" // mention the format you need
+        val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         dateTextView!!.text = sdf.format(cal.getTime())
+
+        toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
+
+        toDoViewModel.list(dateTextView?.text.toString()).observe(this) {
+            todoAdapter.update(it as MutableList<Todo>)
+        }
     }
 
     //투두리스트 구현
     private fun toDoList() {
-        //toDoView = ArrayList()
-
-        //adapter = ArrayAdapter(this, R.layout.todo_item, toDoView)
-
-        //val listView: ListView = findViewById(R.id.toDoView)
         val addBtn: Button = findViewById(R.id.addButton)
         toDoEdit = findViewById(R.id.toDoEdit)
 
-        //listView.adapter = adapter
-
+        toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
         addBtn.setOnClickListener {
             val title = toDoEdit.text.toString()
             val toDoDate = dateTextView?.text.toString()
 
+            //투두 추가
             if(title.isNotEmpty()) {
                 val todo = Todo(0, title, toDoDate, false, false)
 
-                //registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-
-                //val todoAdd = it.data?.getSerializableExtra("todo") as Todo
-
-                //when(it.data?.getIntExtra("flag", -1)) {
-                //0 -> {
                 CoroutineScope(Dispatchers.IO).launch {
                     toDoViewModel.insert(todo)
                 }
                 Toast.makeText(this, "추가되었습니다.", Toast.LENGTH_SHORT).show()
-                //}
-                //}
-                //}
 
-
+                toDoViewModel.list(dateTextView?.text.toString()).observe(this@MainActivity) {
+                    todoAdapter.update(it as MutableList<Todo>)
+                }
             } else {
                 Toast.makeText(this, "할 일을 적어주세요", Toast.LENGTH_SHORT).show()
             }
-        }
-
-        /*
-        listView.setOnItemClickListener { adapterView, view, i, l ->
-            val textView: TextView = view as TextView
-
-            textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        }
-
-         */
-
-        toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
-
-        toDoViewModel.todoList.observe(this) {
-            todoAdapter.update(it)
         }
 
         todoAdapter = ToDoAdapter(this)
@@ -229,32 +199,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-/*
-    private fun addItem() {
-        val title = toDoEdit.text.toString()
-        val toDoDate = dateTextView?.text.toString()
-
-        if(title.isNotEmpty()) {
-            val todo = Todo(0, title, toDoDate, false)
-
-            //registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-
-                    //val todoAdd = it.data?.getSerializableExtra("todo") as Todo
-
-                    //when(it.data?.getIntExtra("flag", -1)) {
-                        //0 -> {
-                            CoroutineScope(Dispatchers.IO).launch {
-                                toDoViewModel.insert(todo)
-                            }
-                            Toast.makeText(this, "추가되었습니다.", Toast.LENGTH_SHORT).show()
-                        //}
-                    //}
-                //}
-
-
-        } else {
-            Toast.makeText(this, "할 일을 적어주세요", Toast.LENGTH_SHORT).show()
-        }
-    }
-*/
 }

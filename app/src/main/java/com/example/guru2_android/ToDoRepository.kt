@@ -20,7 +20,7 @@ class TodoRepository private constructor(context: Context){
 
     private val todoDao = database.todoDao()
 
-    fun list(): LiveData<MutableList<Todo>> = todoDao.list()
+    fun list(toDoDate: String): LiveData<MutableList<Todo>> = todoDao.list(toDoDate)
 
     fun getTodo(id: Long): Todo = todoDao.selectOne(id)
 

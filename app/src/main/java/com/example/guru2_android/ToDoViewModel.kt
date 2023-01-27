@@ -7,12 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class ToDoViewModel: ViewModel() {
-    val todoList: LiveData<MutableList<Todo>>
+    //val todoList: LiveData<MutableList<Todo>>
     private val todoRepository: TodoRepository = TodoRepository.get()
 
-    init {
-        todoList = todoRepository.list()
-    }
+//    init {
+//        todoList = todoRepository.list()
+//    }
+
+    fun list(toDoDate: String) = todoRepository.list(toDoDate)
 
     fun getOne(id: Long) = todoRepository.getTodo(id)
 
