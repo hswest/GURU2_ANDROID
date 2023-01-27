@@ -6,62 +6,72 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/beige1"
-    android:backgroundTint="#00FFFFFF"
-    tools:context=".ui.home.HomeFragment">
-
-    <TextView
-        android:id="@+id/toDoList"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
-        android:text="To do List"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
-
-    <TextView
-        android:id="@+id/diaryName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="오늘의 일기장"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoView" />
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="171dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="2023/01/20"
-        android:textColor="@color/brown1"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/selectDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <Button
-        android:id="@+id/selectDate"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="77dp"
+        android:background="@color/beige1"
         android:backgroundTint="#00FFFFFF"
-        android:foreground="@drawable/ic_baseline_calendar_month_24"
-        app:layout_constraintStart_toEndOf="@+id/date"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+        tools:context=".ui.home.HomeFragment">
+
+        <ImageView
+            android:id="@+id/characterPos"
+            android:layout_width="51dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@android:drawable/star_off" />
+
+        <TextView
+            android:id="@+id/toDoList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="32dp"
+            android:text="To do List"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+
+        <TextView
+            android:id="@+id/diaryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="16dp"
+            android:text="오늘의 일기장"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toDoView" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="171dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:text="2023/01/20"
+            android:textColor="@color/brown1"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/selectDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/characterPos" />
+
+        <Button
+            android:id="@+id/selectDate"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="77dp"
+            android:backgroundTint="#00FFFFFF"
+            android:foreground="@drawable/ic_baseline_calendar_month_24"
+            app:layout_constraintStart_toEndOf="@+id/date"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addButton"
@@ -89,25 +99,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toDoList" />
 
-    <EditText
-        android:id="@+id/diaryTextMultiLine"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/memo_border"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="\n     오늘을 기록해보세요"
-        android:inputType="textMultiLine"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        tools:ignore="TouchTargetSizeCheck" />
+        <EditText
+            android:id="@+id/diaryTextMultiLine"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/memo_border"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="오늘을 기록해보세요"
+            android:inputType="textMultiLine"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diaryName" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/toDoView"
@@ -224,6 +233,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/upuibear_1" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/toDoView"
+            android:layout_width="363dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/memo_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toDoEdit"
+            tools:ignore="MissingConstraints"
+            tools:listitem="@layout/todo_item" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
