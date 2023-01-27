@@ -88,6 +88,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toDoList" />
 
+        <EditText
+            android:id="@+id/diaryTextMultiLine"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/memo_border"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="오늘을 기록해보세요"
+            android:inputType="textMultiLine"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
         <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="394dp"
@@ -193,25 +212,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/upuibear_1" />
-
-        <EditText
-            android:id="@+id/diaryTextMultiLine"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/memo_border"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="오늘을 기록해보세요"
-            android:inputType="textMultiLine"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/toDoView"
