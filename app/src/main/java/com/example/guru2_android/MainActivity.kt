@@ -52,6 +52,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var todoAdapter: ToDoAdapter
     lateinit var toDoView: RecyclerView
 
+    //다이어리 변수
+    lateinit var diaryEt: EditText
+    lateinit var saveBtn: Button
+
+    lateinit var diaryViewModel: DiaryViewModel
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -74,6 +81,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        diaryEt = findViewById(R.id.diaryTextMultiLine)
+        saveBtn = findViewById(R.id.saveBtn)
+
         toDoView = findViewById(R.id.toDoView)
         toDoEdit = findViewById(R.id.toDoEdit)
 
@@ -87,6 +97,8 @@ class MainActivity : AppCompatActivity() {
 
         //투두리스트
         toDoList()
+
+        diary()
 
     }
 
@@ -143,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         dateTextView!!.text = sdf.format(cal.getTime())
 
-        toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
+        //toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
 
         toDoViewModel.list(dateTextView?.text.toString()).observe(this) {
             todoAdapter.update(it as MutableList<Todo>)
@@ -155,7 +167,7 @@ class MainActivity : AppCompatActivity() {
         val addBtn: Button = findViewById(R.id.addButton)
         toDoEdit = findViewById(R.id.toDoEdit)
 
-        toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
+        //toDoViewModel = ViewModelProvider(this)[ToDoViewModel::class.java]
         addBtn.setOnClickListener {
             val title = toDoEdit.text.toString()
             val toDoDate = dateTextView?.text.toString()
@@ -200,5 +212,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun diary() {
+
+        diaryViewModel = ViewModelProvider(this)[DiaryViewModel::class.java]
+
+        saveBtn.setOnClickListener {
+            val diary = Diary(0, diaryEt.text.toString(), dateTextView?.text.toString())
+            diaryViewModel.insert(diary)
+        }
     }
 }

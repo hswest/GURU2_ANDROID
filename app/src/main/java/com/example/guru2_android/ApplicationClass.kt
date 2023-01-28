@@ -7,5 +7,6 @@ class ApplicationClass: Application() {
         super.onCreate()
 
         TodoRepository.initialize(this)
+        DiaryRepository.initialize(this)
     }
 }
