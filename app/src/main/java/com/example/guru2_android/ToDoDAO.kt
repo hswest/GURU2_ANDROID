@@ -14,7 +14,7 @@ interface ToDoDAO {
     fun list(toDoDate: String): LiveData<MutableList<Todo>>
 
     @Query("select * from todoTable where id = (:id)")
-    fun selectOne(id: Long): Todo
+    fun getOne(id: Long): Todo
 
     @Query("select * from todoTable where toDoDate = (:toDoDate)")
     fun selectByDate(toDoDate: String): Todo

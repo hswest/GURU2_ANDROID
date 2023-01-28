@@ -22,7 +22,7 @@ class TodoRepository private constructor(context: Context){
 
     fun list(toDoDate: String): LiveData<MutableList<Todo>> = todoDao.list(toDoDate)
 
-    fun getTodo(id: Long): Todo = todoDao.selectOne(id)
+    fun getOne(id: Long): Todo = todoDao.getOne(id)
 
     fun getByDate(toDoDate: String): Todo = todoDao.selectByDate(toDoDate)
 

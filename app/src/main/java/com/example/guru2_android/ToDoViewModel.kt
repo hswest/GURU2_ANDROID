@@ -16,7 +16,7 @@ class ToDoViewModel: ViewModel() {
 
     fun list(toDoDate: String) = todoRepository.list(toDoDate)
 
-    fun getOne(id: Long) = todoRepository.getTodo(id)
+    fun getOne(id: Long) = todoRepository.getOne(id)
 
     fun getByDate(toDoDate: String) = todoRepository.getByDate(toDoDate)
 
