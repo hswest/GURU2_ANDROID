@@ -1,6 +1,7 @@
 package com.example.guru2_android
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
@@ -58,6 +59,9 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var diaryViewModel: DiaryViewModel
 
+    lateinit var logoutBtn: Button
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +95,18 @@ class MainActivity : AppCompatActivity() {
         toDoViewModel.list(dateTextView?.text.toString()).observe(this@MainActivity) {
             todoAdapter.update(it as MutableList<Todo>)
         }
+
+
+
+        logoutBtn = findViewById<Button>(R.id.logoutBtn)
+
+        logoutBtn.setOnClickListener {
+            Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
         //날짜 선택
         selectDate()
