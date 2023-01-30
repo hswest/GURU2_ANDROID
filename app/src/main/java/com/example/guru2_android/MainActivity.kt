@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var diaryViewModel: DiaryViewModel
 
-    lateinit var logoutBtn: Button
 
 
 
@@ -95,18 +94,6 @@ class MainActivity : AppCompatActivity() {
         toDoViewModel.list(dateTextView?.text.toString()).observe(this@MainActivity) {
             todoAdapter.update(it as MutableList<Todo>)
         }
-
-
-
-        logoutBtn = findViewById<Button>(R.id.logoutBtn)
-
-        logoutBtn.setOnClickListener {
-            Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
-
 
         //날짜 선택
         selectDate()
