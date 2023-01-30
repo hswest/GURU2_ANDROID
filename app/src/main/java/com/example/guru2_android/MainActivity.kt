@@ -1,16 +1,12 @@
 package com.example.guru2_android
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.transition.Slide
-import android.view.Gravity
 import android.view.Menu
 import android.view.View
-import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -60,8 +56,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var diaryViewModel: DiaryViewModel
 
 
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -101,6 +95,7 @@ class MainActivity : AppCompatActivity() {
         //투두리스트
         toDoList()
 
+        //다이어리
         diary()
 
     }

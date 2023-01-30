@@ -17,15 +17,7 @@ class DiaryRepository private constructor(context: Context){
 
     fun list(date: String): LiveData<MutableList<Diary>> = diaryDao.list(date)
 
-    //fun getOne(id: Long): Todo = diaryDao.getOne(id)
-
-    fun getByDate(date: String): Diary = diaryDao.selectByDate(date)
-
     fun insert(diary: Diary) = diaryDao.insert(diary)
-
-    suspend fun update(diary: Diary) = diaryDao.update(diary)
-
-    fun delete(id: Long) = diaryDao.delete(id)
 
     companion object {
         private var INSTANCE: DiaryRepository?=null

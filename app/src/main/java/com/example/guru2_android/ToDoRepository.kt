@@ -1,13 +1,8 @@
 package com.example.guru2_android
 
-import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 private const val DATABASE_NAME = "todo-database.db"
 class TodoRepository private constructor(context: Context){
@@ -23,8 +18,6 @@ class TodoRepository private constructor(context: Context){
     fun list(toDoDate: String): LiveData<MutableList<Todo>> = todoDao.list(toDoDate)
 
     fun getOne(id: Long): Todo = todoDao.getOne(id)
-
-    fun getByDate(toDoDate: String): Todo = todoDao.selectByDate(toDoDate)
 
     fun insert(dto: Todo) = todoDao.insert(dto)
 

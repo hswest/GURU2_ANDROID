@@ -12,18 +12,8 @@ class DiaryViewModel: ViewModel() {
 
     fun list(date: String) = diaryRepository.list(date)
 
-    //fun getOne(id: Long) = diaryRepository.getOne(id)
-
-    fun getByDate(date: String) = diaryRepository.getByDate(date)
-
     fun insert(diary: Diary) = viewModelScope.launch(Dispatchers.IO) {
         diaryRepository.insert(diary)
     }
-
-    fun update(diary: Diary) = viewModelScope.launch(Dispatchers.IO) {
-        diaryRepository.update(diary)
-    }
-
-    fun delete(id: Long) = diaryRepository.delete(id)
 
 }

@@ -3,8 +3,6 @@ package com.example.guru2_android
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
-import java.util.*
 
 @Entity(tableName = "todoTable")
 class Todo(
